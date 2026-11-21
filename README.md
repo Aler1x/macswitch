@@ -32,10 +32,20 @@ The menu reads the enabled layouts each time it opens, so a layout you add in Sy
 Needs Xcode command line tools.
 
 ```bash
-./build.sh            # build/MacSwitch.app (universal)
-./build.sh --install  # also copy to ~/Applications and start it
-./build.sh --zip      # also create dist/MacSwitch.zip for a release
+zsh build.sh            # build/MacSwitch.app (universal)
+zsh build.sh --install  # also copy to ~/Applications and start it
+zsh build.sh --zip      # also create dist/MacSwitch.zip for a release
 ```
+
+## Release
+
+A push to `main` creates a GitHub release when the version is new.
+
+1. Change the number in `VERSION`.
+2. Add a `## [x.y.z] - date` section to `CHANGELOG.md`. The release notes use this section.
+3. Push to `main`.
+
+The workflow builds the app and publishes tag `vx.y.z` with `MacSwitch.zip`. If the tag exists, it does nothing. If the changelog section is missing, it fails.
 
 ## How it works
 

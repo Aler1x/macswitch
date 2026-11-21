@@ -17,6 +17,8 @@ for arch in arm64 x86_64; do
 done
 lipo -create "$TMP"/macswitch-* -output "$APP/Contents/MacOS/macswitch"
 cp Info.plist "$APP/Contents/Info.plist"
+VERSION=$(<VERSION)
+/usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString $VERSION" -c "Set :CFBundleVersion $VERSION" "$APP/Contents/Info.plist"
 
 swiftc -swift-version 5 scripts/make-icon.swift -o "$TMP/make-icon"
 "$TMP/make-icon" "$TMP/icon.png"
